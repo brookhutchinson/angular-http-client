@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+// components
+import { Component }  from '@angular/core';
+
+// services
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private http: HttpClient) {}
+}
