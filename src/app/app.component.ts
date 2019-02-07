@@ -1,11 +1,11 @@
 // components
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit }             from '@angular/core';
 
 // models
-import { UserResponse }       from './models/user-response.model';
+import { UserResponse }                  from './models/user-response.model';
 
 // services
-import { HttpClient }         from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -29,10 +29,14 @@ export class AppComponent implements OnInit {
           console.log('location:' + ' ' + data.location);
         },
         // error
-        error => {
-          console.log('http GET response');
-          console.log('ERROR');
-          console.log('An error has occured');
+        (error: HttpErrorResponse) => {
+          if (error.error instanceof Error) {
+            // client-side error
+            console.log('client-side error occured');
+          } else {
+            // server-side error
+            console.log('server-side error occured');
+          }
         }
       );
   }
