@@ -20,12 +20,19 @@ export class AppComponent implements OnInit {
     this.http.get<UserResponse>("https://api.github.com/users/brookhutchinson")
       // subscribe to observable
       .subscribe(
-        // store http response inside "data" property
+        // success
         data => {
           console.log('http GET response');
+          console.log('SUCCESS');
           console.log('login:' + ' ' + data.login);
           console.log('name:' + ' ' + data.name);
           console.log('location:' + ' ' + data.location);
+        },
+        // error
+        error => {
+          console.log('http GET response');
+          console.log('ERROR');
+          console.log('An error has occured');
         }
       );
   }
